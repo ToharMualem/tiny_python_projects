@@ -1,10 +1,10 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 """tests for crowsnest.py"""
 
 import os
 from subprocess import getstatusoutput, getoutput
 
-prg = './crowsnest.py'
+prg = 'tohar_crowsnest.py'
 consonant_words = [
     'brigantine', 'clipper', 'dreadnought', 'frigate', 'galleon', 'haddock',
     'junk', 'ketch', 'longboat', 'mullet', 'narwhal', 'porpoise', 'quay',
@@ -19,7 +19,7 @@ template = 'Ahoy, Captain, {} {} off the larboard bow!'
 def test_exists():
     """exists"""
 
-    assert os.path.isfile(prg)
+    assert os.path.isfile(f'{prg}')
 
 
 # --------------------------------------------------
@@ -27,7 +27,7 @@ def test_usage():
     """usage"""
 
     for flag in ['-h', '--help']:
-        rv, out = getstatusoutput(f'{prg} {flag}')
+        rv, out = getstatusoutput(f'python {prg} {flag}')
         assert rv == 0
         assert out.lower().startswith('usage')
 
@@ -64,5 +64,5 @@ def test_vowel_upper():
     """octopus -> an Octopus"""
 
     for word in vowel_words:
-        out = getoutput(f'{prg} {word.upper()}')
+        out = getoutput(f'python {prg} {word.upper()}')
         assert out.strip() == template.format('an', word.upper())

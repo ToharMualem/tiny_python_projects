@@ -16,13 +16,14 @@ def get_args():
         description='Prints Ahoy message by a given word',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-    parser.add_argument('-w',
-                        '--word',
-                        help='A named string argument',
-                        metavar='word',
-                        type=str,
-                        default='tohar')
+    parser.add_argument('word', metavar='word', help='Word')
     return parser.parse_args()
+
+
+def concat_ahoy_sentence(word):
+    first_char = word[0].lower()
+    article = 'an' if first_char in 'aeiou' else 'a'
+    return 'Ahoy, Captain, {} {} off the larboard bow!'.format(article, word)
 
 
 # --------------------------------------------------
@@ -30,7 +31,7 @@ def main():
     """Make a jazz noise here"""
     args = get_args()
     word = args.word
-    print(word)
+    print(concat_ahoy_sentence(word))
 
 
 # --------------------------------------------------

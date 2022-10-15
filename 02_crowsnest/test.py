@@ -37,7 +37,7 @@ def test_consonant():
     """brigantine -> a brigantine"""
 
     for word in consonant_words:
-        out = getoutput(f'{prg} {word}')
+        out = getoutput(f'python {prg} {word}')
         assert out.strip() == template.format('a', word)
 
 
@@ -46,7 +46,7 @@ def test_consonant_upper():
     """brigantine -> a Brigatine"""
 
     for word in consonant_words:
-        out = getoutput(f'{prg} {word.title()}')
+        out = getoutput(f'python {prg} {word.title()}')
         assert out.strip() == template.format('a', word.title())
 
 
@@ -55,7 +55,7 @@ def test_vowel():
     """octopus -> an octopus"""
 
     for word in vowel_words:
-        out = getoutput(f'{prg} {word}')
+        out = getoutput(f'python {prg} {word}')
         assert out.strip() == template.format('an', word)
 
 

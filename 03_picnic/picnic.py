@@ -1,8 +1,8 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 """
-Author : Anonymous <Anonymous@DESKTOP-E0QB0L4>
+Author : Tohar Mualem
 Date   : 2022-10-21
-Purpose: Rock the Casbah
+Purpose: Bringing items to picnic
 """
 
 import argparse

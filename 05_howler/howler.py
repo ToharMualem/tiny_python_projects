@@ -6,6 +6,7 @@ Purpose: Howler
 """
 
 import argparse
+import io
 import os
 import sys
 
@@ -30,9 +31,11 @@ def get_args():
                         help='A text argument')
     args = parser.parse_args()
 
-    # reading text from file in case file exists, else the text stays the same as given.
+    # opening a file handler of args.text in case file exists, else we open a StringIO file handler.
     if os.path.isfile(args.text):
-        args.text = open(args.text).read().rstrip()
+        args.text = open(args.text)
+    else:
+        args.text = io.StringIO(args.text + '\n')
 
     return args
 
@@ -46,16 +49,10 @@ def main():
     text = args.text
     out_path = args.outfile
 
-    # upper content.
-    text = text.upper()
-    # printing to file or to console.
-    out_handler = sys.stdout
-    if out_path is not None:
-        out_handler = open(out_path, "wt")
-    out_handler.write(text + '\n')
-    out_handler.close()
-
-
+    out_file_handler = open(out_path, "wt") if out_path else sys.stdout
+    for line in text:
+        out_file_handler.write(line.upper())
+    out_file_handler.close()
 
 
 # --------------------------------------------------

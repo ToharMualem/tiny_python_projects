@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 """tests for ransom.py"""
 
 import os
@@ -6,7 +6,7 @@ import re
 import random
 from subprocess import getstatusoutput
 
-prg = './ransom.py'
+prg = 'ransom.py'
 fox = '../inputs/fox.txt'
 now = '../inputs/now.txt'
 
@@ -28,7 +28,7 @@ def test_usage():
     """usage"""
 
     for flag in ['-h', '--help']:
-        rv, out = getstatusoutput(f'{prg} {flag}')
+        rv, out = getstatusoutput(f'python {prg} {flag}')
         assert rv == 0
         assert re.match("usage", out, re.IGNORECASE)
 
@@ -42,7 +42,7 @@ def test_text1():
              ('3', 'thE quICk BROwn Fox jUmPS OVEr the lAZY DOG.')]
 
     for seed, expected in tests:
-        rv, out = getstatusoutput(f'{prg} {seed_flag()} {seed} "{in_text}"')
+        rv, out = getstatusoutput(f'python {prg} {seed_flag()} {seed} "{in_text}"')
         assert rv == 0
         assert out.strip() == expected
 
@@ -60,7 +60,7 @@ def test_text2():
     ]
 
     for seed, expected in tests:
-        rv, out = getstatusoutput(f'{prg} {seed_flag()} {seed} "{in_text}"')
+        rv, out = getstatusoutput(f'python {prg} {seed_flag()} {seed} "{in_text}"')
         assert rv == 0
         assert out.strip() == expected
 
@@ -73,7 +73,7 @@ def test_file1():
              ('3', 'thE quICk BROwn Fox jUmPS OVEr the lAZY DOG.')]
 
     for seed, expected in tests:
-        rv, out = getstatusoutput(f'{prg} {seed_flag()} {seed} {fox}')
+        rv, out = getstatusoutput(f'python {prg} {seed_flag()} {seed} {fox}')
         assert rv == 0
         assert out.strip() == expected
 
@@ -90,6 +90,6 @@ def test_file2():
     ]
 
     for seed, expected in tests:
-        rv, out = getstatusoutput(f'{prg} {seed_flag()} {seed} {now}')
+        rv, out = getstatusoutput(f'python {prg} {seed_flag()} {seed} {now}')
         assert rv == 0
         assert out.strip() == expected
